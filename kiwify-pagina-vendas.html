@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bio Page Exclusiva · DJusto Creative</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#060606;--surface:#0F0F0F;--surface2:#161616;
+  --rose:#D4899A;--rose2:#F0B8C8;--rose-dim:rgba(212,137,154,.15);
+  --white:#FAF0F3;--muted:rgba(255,255,255,.4);--dim:rgba(255,255,255,.18);
+  --green:#3ECF8E;--border:rgba(255,255,255,.07)
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--white);font-family:'DM Sans',sans-serif;font-weight:300;overflow-x:hidden}
+
+/* ── HERO ── */
+.hero{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:60px 24px 80px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;width:600px;height:600px;background:radial-gradient(circle,rgba(212,137,154,.12) 0%,transparent 65%);top:-100px;left:50%;transform:translateX(-50%);pointer-events:none}
+.hero::after{content:'';position:absolute;width:300px;height:300px;background:radial-gradient(circle,rgba(100,80,200,.07) 0%,transparent 65%);bottom:0;right:-50px;pointer-events:none}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.015) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.015) 1px,transparent 1px);background-size:40px 40px}
+
+.hero-inner{position:relative;z-index:2;max-width:480px;margin:0 auto}
+.hero-badge{display:inline-flex;align-items:center;gap:7px;border:1px solid rgba(212,137,154,.3);border-radius:100px;padding:6px 16px;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--rose);margin-bottom:32px;background:rgba(212,137,154,.05);animation:fadeIn .8s ease forwards}
+.badge-dot{width:5px;height:5px;border-radius:50%;background:var(--rose);animation:blink 2s ease infinite}
+
+.hero-title{font-family:'Syne',sans-serif;font-size:clamp(36px,9vw,56px);font-weight:800;line-height:1.05;margin-bottom:20px;animation:fadeUp .9s ease forwards .1s;opacity:0}
+.hero-title em{font-style:italic;font-family:'Instrument Serif',serif;color:var(--rose)}
+.hero-title .out{-webkit-text-stroke:1.5px rgba(255,255,255,.3);color:transparent;font-style:normal}
+
+.hero-sub{font-size:15px;color:var(--muted);line-height:1.75;max-width:360px;margin:0 auto 40px;animation:fadeUp .9s ease forwards .2s;opacity:0}
+.hero-sub strong{color:var(--white);font-weight:500}
+
+.hero-proof{display:flex;align-items:center;gap:20px;justify-content:center;margin-bottom:44px;animation:fadeUp .9s ease forwards .3s;opacity:0}
+.proof-item{text-align:center}
+.proof-num{font-family:'Syne',sans-serif;font-size:26px;font-weight:800;color:var(--rose2);display:block}
+.proof-label{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted)}
+.proof-sep{width:1px;height:36px;background:var(--border)}
+
+.hero-cta{animation:fadeUp .9s ease forwards .4s;opacity:0}
+.btn-primary{display:inline-flex;align-items:center;gap:10px;background:var(--rose);color:#fff;font-family:'Syne',sans-serif;font-size:14px;font-weight:700;padding:18px 36px;border-radius:100px;text-decoration:none;letter-spacing:.5px;transition:all .3s ease;box-shadow:0 12px 40px rgba(212,137,154,.35)}
+.btn-primary:hover{background:var(--rose2);transform:translateY(-2px);box-shadow:0 16px 48px rgba(212,137,154,.5)}
+.hero-trust{font-size:11px;color:var(--dim);margin-top:14px}
+
+/* ── SECTIONS ── */
+section{padding:72px 24px;max-width:500px;margin:0 auto}
+.divider{width:100%;height:1px;background:linear-gradient(to right,transparent,var(--border),transparent);max-width:500px;margin:0 auto}
+.sec-tag{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--rose);margin-bottom:14px;font-weight:500}
+.sec-title{font-family:'Syne',sans-serif;font-size:clamp(24px,6vw,34px);line-height:1.2;margin-bottom:14px}
+.sec-title em{font-style:italic;font-family:'Instrument Serif',serif;color:var(--rose)}
+.sec-body{font-size:14px;color:var(--muted);line-height:1.8}
+
+/* ── ANTES/DEPOIS ── */
+.ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:28px}
+.ba-col-tag{font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;text-align:center;padding:5px 0 9px}
+.tag-before{color:#F09595}
+.tag-after{color:#97C459}
+
+.before-card{background:#EFEFEF;border-radius:14px;padding:16px 12px 14px;display:flex;flex-direction:column;align-items:center}
+.lt-av{width:38px;height:38px;border-radius:50%;background:#CCC;margin-bottom:7px}
+.lt-nm{font-size:11px;font-weight:700;color:#333;font-family:sans-serif;margin-bottom:2px}
+.lt-hd{font-size:9px;color:#999;font-family:sans-serif;margin-bottom:10px}
+.lt-btn{width:100%;background:#fff;border-radius:4px;border:.5px solid #DDD;padding:7px 9px;margin-bottom:5px;text-align:center;font-size:9.5px;color:#555;font-family:sans-serif}
+.lt-pw{font-size:7.5px;color:#BBB;margin-top:8px;font-family:sans-serif}
+
+.after-card{background:#060606;border-radius:14px;padding:16px 12px 14px;display:flex;flex-direction:column;align-items:center;border:.5px solid #2A1520;position:relative;overflow:hidden}
+.after-card::before{content:'';position:absolute;width:100px;height:100px;background:radial-gradient(circle,rgba(212,137,154,.16) 0%,transparent 70%);top:-15px;right:-15px}
+.bp-orn{width:28px;height:.5px;background:linear-gradient(to right,transparent,var(--rose),transparent);margin-bottom:10px}
+.bp-avw{position:relative;width:42px;height:42px;margin-bottom:8px}
+.bp-ring{position:absolute;inset:0;border-radius:50%;border:1.5px solid var(--rose);opacity:.55}
+.bp-av{position:absolute;inset:3px;border-radius:50%;background:linear-gradient(135deg,var(--rose),#9B4E63);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;font-family:serif}
+.bp-nm{font-size:10px;font-weight:700;color:var(--white);letter-spacing:2px;text-transform:uppercase;font-family:'Instrument Serif',serif;margin-bottom:2px;text-align:center}
+.bp-nm span{color:var(--rose)}
+.bp-tg{font-size:7px;color:#7A4A58;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px;font-family:sans-serif}
+.bp-div{display:flex;align-items:center;gap:4px;width:100%;margin-bottom:8px}
+.bp-dl{flex:1;height:.5px;background:rgba(212,137,154,.2)}
+.bp-dd{width:3px;height:3px;background:var(--rose);transform:rotate(45deg)}
+.bp-btn{width:100%;border-radius:4px;padding:7px 8px;margin-bottom:5px;display:flex;align-items:center;gap:6px}
+.bp-b1{background:linear-gradient(135deg,#2A0E18,#1A0810);border:.5px solid rgba(212,137,154,.3)}
+.bp-b2{background:rgba(255,255,255,.03);border:.5px solid rgba(255,255,255,.07)}
+.bp-b3{background:rgba(37,211,102,.04);border:.5px solid rgba(37,211,102,.2)}
+.bp-ic{width:16px;height:16px;border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:8px;flex-shrink:0}
+.bp-b1 .bp-ic{background:rgba(212,137,154,.15)}
+.bp-b2 .bp-ic{background:rgba(255,255,255,.05)}
+.bp-b3 .bp-ic{background:rgba(37,211,102,.1)}
+.bp-tx{flex:1}
+.bp-t{font-size:8.5px;font-weight:600;color:var(--white);display:block;font-family:sans-serif}
+.bp-d{font-size:6.5px;color:var(--dim);display:block;font-family:sans-serif;margin-top:1px}
+.bp-ar{font-size:8px;color:rgba(212,137,154,.35)}
+
+.bp-rev-ttl{width:100%;font-size:6.5px;letter-spacing:2px;text-transform:uppercase;color:rgba(212,137,154,.5);font-family:sans-serif;text-align:center;margin:8px 0 5px}
+.bp-rev{width:100%;background:rgba(255,255,255,.025);border-left:1.5px solid var(--rose);border-radius:0 4px 4px 0;padding:5px 7px;margin-bottom:4px}
+.bp-rev-top{display:flex;align-items:center;gap:4px;margin-bottom:2px}
+.bp-rev-av{width:13px;height:13px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:6px;font-weight:600;flex-shrink:0;font-family:sans-serif}
+.rav1{background:rgba(212,137,154,.2);color:var(--rose)}
+.rav2{background:rgba(151,196,89,.2);color:#639922}
+.rav3{background:rgba(255,193,7,.15);color:#BA7517}
+.bp-rev-nm{font-size:7px;font-weight:600;color:rgba(255,255,255,.5);font-family:sans-serif;flex:1}
+.bp-rev-st{font-size:6.5px;color:#D4AF37}
+.bp-rev-txt{font-size:6.5px;color:rgba(255,255,255,.3);line-height:1.4;font-style:italic;font-family:sans-serif}
+.bp-rev-txt strong{color:rgba(255,255,255,.6);font-style:normal}
+.bp-ig{font-size:7px;color:#5A3040;margin-top:8px;letter-spacing:1px;font-family:sans-serif}
+
+/* ── PARA QUEM ── */
+.for-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:28px}
+.for-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px 14px;transition:border-color .2s}
+.for-card:hover{border-color:rgba(212,137,154,.35)}
+.for-emoji{font-size:20px;margin-bottom:9px;display:block}
+.for-name{font-size:13px;font-weight:500;color:var(--white);margin-bottom:4px}
+.for-desc{font-size:11px;color:var(--muted);line-height:1.5}
+
+/* ── COMO FUNCIONA ── */
+.steps{margin-top:28px;display:flex;flex-direction:column;gap:0}
+.step{display:flex;align-items:flex-start;gap:16px;padding:20px 0;border-bottom:1px solid var(--border)}
+.step:last-child{border-bottom:none}
+.step-num{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;color:rgba(212,137,154,.25);line-height:1;flex-shrink:0;width:32px}
+.step-body{}
+.step-title{font-size:14px;font-weight:500;color:var(--white);margin-bottom:5px}
+.step-desc{font-size:13px;color:var(--muted);line-height:1.6}
+
+/* ── DEPOIMENTOS ── */
+.testi-grid{display:flex;flex-direction:column;gap:10px;margin-top:28px}
+.testi-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px 18px}
+.testi-card.feat{border-color:rgba(212,137,154,.3)}
+.testi-top{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.testi-av{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:500;flex-shrink:0;font-family:sans-serif}
+.tav-pink{background:#FBEAF0;color:#993556}
+.tav-blue{background:#E6F1FB;color:#185FA5}
+.tav-amber{background:#FAEEDA;color:#BA7517}
+.testi-info{flex:1}
+.testi-nm{font-size:13px;font-weight:500;color:var(--white);display:block}
+.testi-rl{font-size:11px;color:var(--muted);display:block;margin-top:1px}
+.testi-stars{display:flex;gap:2px}
+.star{font-size:11px;color:#D4AF37}
+.testi-txt{font-size:13px;color:var(--muted);line-height:1.7;font-style:italic}
+.testi-txt strong{color:var(--white);font-style:normal;font-weight:500}
+.feat-badge{display:inline-block;background:rgba(212,137,154,.12);color:var(--rose);font-size:9px;font-weight:600;padding:2px 9px;border-radius:20px;letter-spacing:1px;text-transform:uppercase;margin-bottom:10px}
+
+/* ── PRICING ── */
+.pricing-box{margin-top:28px;background:var(--surface);border:1px solid var(--border);border-radius:16px;overflow:hidden}
+.pricing-head{background:linear-gradient(135deg,#1A0810,#0F0606);padding:28px 24px;border-bottom:1px solid rgba(212,137,154,.12);text-align:center}
+.pricing-tag{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--rose);margin-bottom:14px}
+.price-big{font-family:'Syne',sans-serif;font-size:56px;font-weight:800;color:var(--white);line-height:1}
+.price-big sup{font-size:20px;color:var(--muted);font-weight:400;vertical-align:top;margin-top:8px;display:inline-block}
+.price-note{font-size:12px;color:var(--muted);margin-top:8px}
+.pricing-body{padding:24px}
+.inc-item{display:flex;align-items:center;gap:12px;font-size:14px;color:rgba(255,255,255,.7);margin-bottom:14px}
+.inc-check{width:20px;height:20px;border-radius:50%;background:rgba(62,207,142,.1);border:1px solid rgba(62,207,142,.3);display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--green);flex-shrink:0}
+.pricing-cta{padding:0 24px 28px}
+.btn-big{display:flex;align-items:center;justify-content:center;gap:10px;background:var(--rose);color:#fff;font-family:'Syne',sans-serif;font-size:15px;font-weight:700;padding:18px;border-radius:10px;text-decoration:none;letter-spacing:.5px;transition:all .3s ease;box-shadow:0 10px 36px rgba(212,137,154,.35);animation:pulse 3s ease infinite}
+.btn-big:hover{background:var(--rose2)}
+.pricing-trust{text-align:center;font-size:11px;color:var(--dim);margin-top:14px}
+
+/* ── FOOTER ── */
+.footer{text-align:center;padding:40px 24px 56px;border-top:1px solid var(--border)}
+.footer-brand{font-family:'Instrument Serif',serif;font-size:13px;letter-spacing:2px;color:var(--muted);font-style:italic}
+
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+@keyframes pulse{0%,100%{box-shadow:0 10px 36px rgba(212,137,154,.35)}50%{box-shadow:0 10px 52px rgba(212,137,154,.6)}}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-inner">
+    <div class="hero-badge"><span class="badge-dot"></span>DJusto Creative · Serviço Personalizado</div>
+    <h1 class="hero-title">
+      Uma Bio Page<br>
+      que faz seu negócio<br>
+      <em>parecer incrível.</em>
+    </h1>
+    <p class="hero-sub">
+      Chega de Página genérica. Criamos uma página exclusiva com <strong>design personalizado</strong>, seus links estratégicos e <strong>avaliações dos seus clientes</strong> — tudo pronto em até 24h.
+    </p>
+    <div class="hero-proof">
+      <div class="proof-item"><span class="proof-num">47+</span><span class="proof-label">páginas criadas</span></div>
+      <div class="proof-sep"></div>
+      <div class="proof-item"><span class="proof-num">24h</span><span class="proof-label">de entrega</span></div>
+      <div class="proof-sep"></div>
+      <div class="proof-item"><span class="proof-num">5.0</span><span class="proof-label">avaliação</span></div>
+    </div>
+    <div class="hero-cta">
+      <a href="#pricing" class="btn-primary">Quero minha Bio Page →</a>
+      <p class="hero-trust">R$97 · pagamento único · sem mensalidade</p>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ANTES / DEPOIS -->
+<section>
+  <p class="sec-tag">Antes & Depois</p>
+  <h2 class="sec-title">O que muda quando você sai do <em>padrão.</em></h2>
+  <p class="sec-body">Seu link da bio é a primeira impressão do seu negócio fora do Instagram. Ela precisa representar você de verdade.</p>
+
+  <div class="ba-grid">
+    <div>
+      <div class="ba-col-tag tag-before">❌ Antes · Página Genérica</div>
+      <div class="before-card">
+        <div class="lt-av"></div>
+        <div class="lt-nm">@seu.negocio</div>
+        <div class="lt-hd">Studio Cabelos</div>
+        <div class="lt-btn">Agende seu horário</div>
+        <div class="lt-btn" style="opacity:.65">Ver portfólio</div>
+        <div class="lt-btn" style="opacity:.3">Fale conosco</div>
+        <div class="lt-pw">página genérica</div>
+      </div>
+    </div>
+    <div>
+      <div class="ba-col-tag tag-after">✅ Depois · Bio Page</div>
+      <div class="after-card">
+        <div class="bp-orn"></div>
+        <div class="bp-avw"><div class="bp-ring"></div><div class="bp-av">SC</div></div>
+        <div class="bp-nm">Studio <span>Cabelos</span></div>
+        <div class="bp-tg">Por Ana Lima · Especialista</div>
+        <div class="bp-div"><div class="bp-dl"></div><div class="bp-dd"></div><div class="bp-dl"></div></div>
+        <div class="bp-btn bp-b1"><div class="bp-ic">✂️</div><div class="bp-tx"><span class="bp-t">Agendar Horário</span><span class="bp-d">Corte · Coloração</span></div><span class="bp-ar">→</span></div>
+        <div class="bp-btn bp-b2"><div class="bp-ic">📸</div><div class="bp-tx"><span class="bp-t">Ver Transformações</span><span class="bp-d">Resultados reais</span></div><span class="bp-ar">→</span></div>
+        <div class="bp-btn bp-b3"><div class="bp-ic">💬</div><div class="bp-tx"><span class="bp-t">WhatsApp Direto</span><span class="bp-d">Resposta rápida</span></div><span class="bp-ar">→</span></div>
+        <div class="bp-rev-ttl">⭐ avaliações das clientes</div>
+        <div class="bp-rev"><div class="bp-rev-top"><div class="bp-rev-av rav1">CL</div><span class="bp-rev-nm">Camila Lima</span><span class="bp-rev-st">★★★★★</span></div><p class="bp-rev-txt">"<strong>Transformação incrível!</strong> Super indico."</p></div>
+        <div class="bp-rev"><div class="bp-rev-top"><div class="bp-rev-av rav2">JS</div><span class="bp-rev-nm">Juliana Santos</span><span class="bp-rev-st">★★★★★</span></div><p class="bp-rev-txt">"<strong>Melhor salão</strong> que já fui!"</p></div>
+        <div class="bp-rev"><div class="bp-rev-top"><div class="bp-rev-av rav3">MF</div><span class="bp-rev-nm">Marina Freitas</span><span class="bp-rev-st">★★★★★</span></div><p class="bp-rev-txt">"<strong>Atendimento impecável</strong>. Voltarei sempre!"</p></div>
+        <div class="bp-ig">@seu.negocio</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PARA QUEM -->
+<section>
+  <p class="sec-tag">Para quem é</p>
+  <h2 class="sec-title">Negócios locais que se importam com <em>imagem.</em></h2>
+  <div class="for-grid">
+    <div class="for-card"><span class="for-emoji">🍽️</span><p class="for-name">Restaurantes</p><p class="for-desc">Cardápio, reservas e localização em um clique</p></div>
+    <div class="for-card"><span class="for-emoji">✂️</span><p class="for-name">Salões & Estúdios</p><p class="for-desc">Agendamento, portfólio e contato direto</p></div>
+    <div class="for-card"><span class="for-emoji">🛍️</span><p class="for-name">Comércio Local</p><p class="for-desc">Catálogo, horários e canal de pedidos</p></div>
+    <div class="for-card"><span class="for-emoji">🎂</span><p class="for-name">Serviços Diversos</p><p class="for-desc">Orçamentos, portfólio e contato direto</p></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- COMO FUNCIONA -->
+<section>
+  <p class="sec-tag">Como funciona</p>
+  <h2 class="sec-title">Simples, rápido e <em>sem complicação.</em></h2>
+  <div class="steps">
+    <div class="step"><div class="step-num">01</div><div class="step-body"><div class="step-title">Você compra e me envia as informações</div><div class="step-desc">Nome do negócio, links desejados, cores de preferência e avaliações dos seus clientes.</div></div></div>
+    <div class="step"><div class="step-num">02</div><div class="step-body"><div class="step-title">Eu crio do zero em até 24 horas</div><div class="step-desc">Design exclusivo, pensado para o seu segmento e identidade visual.</div></div></div>
+    <div class="step"><div class="step-num">03</div><div class="step-body"><div class="step-title">Você recebe e coloca no Instagram</div><div class="step-desc">Página pronta, hospedada e funcionando. É só trocar o link na bio.</div></div></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- DEPOIMENTOS -->
+<section>
+  <p class="sec-tag">Depoimentos</p>
+  <h2 class="sec-title">O que dizem quem já <em>tem a sua.</em></h2>
+  <div class="testi-grid">
+    <div class="testi-card feat">
+      <div class="feat-badge">Destaque</div>
+      <div class="testi-top">
+        <div class="testi-av tav-pink">CL</div>
+        <div class="testi-info"><span class="testi-nm">Camila Lima</span><span class="testi-rl">Studio CL Beauty</span></div>
+        <div class="testi-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+      </div>
+      <p class="testi-txt">"Minha página ficou <strong>completamente diferente</strong> de tudo que eu via por aí. Em 3 dias já recebi mensagens de clientes novas dizendo que me acharam pelo Instagram."</p>
+    </div>
+    <div class="testi-card">
+      <div class="testi-top">
+        <div class="testi-av tav-blue">RP</div>
+        <div class="testi-info"><span class="testi-nm">Rafael Pereira</span><span class="testi-rl">Barbearia Estilo Certo</span></div>
+        <div class="testi-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+      </div>
+      <p class="testi-txt">"Entrega no dia seguinte, exatamente como pedi. <strong>Minha página parecia amadora</strong> perto disso. Clientes elogiam toda semana."</p>
+    </div>
+    <div class="testi-card">
+      <div class="testi-top">
+        <div class="testi-av tav-amber">JS</div>
+        <div class="testi-info"><span class="testi-nm">Juliana Santos</span><span class="testi-rl">Doces da Ju</span></div>
+        <div class="testi-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+      </div>
+      <p class="testi-txt">"Foi só mandar as informações e <strong>em 24h estava tudo pronto</strong>. Minha página tem a minha cara de verdade agora."</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PRICING -->
+<section id="pricing">
+  <p class="sec-tag">Investimento</p>
+  <h2 class="sec-title">Simples e <em>sem surpresa.</em></h2>
+  <div class="pricing-box">
+    <div class="pricing-head">
+      <p class="pricing-tag">Bio Page Exclusiva · Serviço Completo</p>
+      <div class="price-big"><sup>R$</sup> 97</div>
+      <p class="price-note">pagamento único · sem mensalidade</p>
+    </div>
+    <div class="pricing-body">
+      <div class="inc-item"><div class="inc-check">✓</div>Design 100% exclusivo para o seu negócio</div>
+      <div class="inc-item"><div class="inc-check">✓</div>Até 3 links estratégicos</div>
+      <div class="inc-item"><div class="inc-check">✓</div>Avaliações dos seus clientes integradas</div>
+      <div class="inc-item"><div class="inc-check">✓</div>Entrega em até 24 horas</div>
+      <div class="inc-item"><div class="inc-check">✓</div>Pronto para colocar no Instagram</div>
+      <div class="inc-item"><div class="inc-check">✓</div>Sem custo de plataforma ou mensalidade</div>
+    </div>
+    <div class="pricing-cta">
+      <a href="https://wa.me/5581998011476" class="btn-big" target="_blank">💬 Quero minha Bio Page agora</a>
+      <p class="pricing-trust">Sem contrato · Entrega rápida · Pagamento único</p>
+    </div>
+  </div>
+</section>
+
+<div class="footer">
+  <p class="footer-brand">DJusto Creative · Design & IA · @djustocreative.ia</p>
+</div>
+
+</body>
+</html>
